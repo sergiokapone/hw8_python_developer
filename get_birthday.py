@@ -1,6 +1,11 @@
 import csv
 from datetime import datetime, timedelta
 
+
+""" Зчитуванні інформації про дати народження з csv-файлу та формування
+    на його основі списка словників users
+"""
+
 filename = "birthdays.csv"
 
 users = []
@@ -12,6 +17,10 @@ with open(filename, "r") as data:
 
 
 def get_birthdays_per_week(users):
+    """Функція виводить список колег, яких потрібно привітати з днем народження на тижні."""
+
+    # Береться опорний день -- субота. Всі дні народження будуть виводитись,
+    # починаючи з цього дня і далі.
 
     saturday = get_last_saturday()
 
@@ -50,4 +59,3 @@ def get_last_saturday():
 
 
 get_birthdays_per_week(users)
-
