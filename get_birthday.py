@@ -43,9 +43,20 @@ def get_birthdays_per_week(users):
             k = "Monday"
         d.setdefault(k, []).append(v)
 
-    for i in d:
-        print(i, end=": ")
-        print(*d[i], sep=", ")
+    m = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ]
+
+    for i in m:
+        if d.get(i):
+            print(i, end=": ")
+            print(*d[i], sep=", ")
 
 
 def get_last_saturday():
@@ -58,4 +69,6 @@ def get_last_saturday():
     return last_saturday
 
 
-get_birthdays_per_week(users)
+if __name__ == "__main__":
+
+    get_birthdays_per_week(users)
