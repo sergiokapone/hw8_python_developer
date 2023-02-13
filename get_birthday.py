@@ -29,7 +29,8 @@ def get_birthdays_per_week(users):
     # Якщо сьогодні субота, або неділя,
     # то забираємо ці дні і далі до п'ятниці включно.
 
-    today = datetime.today().date()
+    # today = datetime.today().date()
+    today = datetime.strptime('11/02/2023', '%d/%m/%Y').date()
 
     def filtering(user):
         if today.weekday() == 5:
@@ -56,8 +57,10 @@ def get_birthdays_per_week(users):
 
     d = {}
     for k, v in user_birthdays:
-        if k in ("Saturday", "Sunday"):
-            k = "Monday"
+        if k.strftime('%A') == "Saturday":
+            k += timedelta(days=2)
+        elif k.strftime('%A') == "Sunday":
+            k += timedelta(days=1)
         d.setdefault(k, []).append(v)
 
     d = sorted(d.items())
